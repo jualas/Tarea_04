@@ -1,6 +1,7 @@
 # Filmoteca
 
-Filmoteca es una aplicación JavaFX para gestionar una colección de películas. Permite añadir, modificar, borrar y buscar películas, así como ver detalles de cada una.
+Filmoteca es una aplicación JavaFX para gestionar una colección de películas. Permite añadir, modificar, borrar y buscar
+películas, así como ver detalles de cada una.
 
 ## Información del Alumno
 
@@ -24,4 +25,4 @@ Filmoteca es una aplicación JavaFX para gestionar una colección de películas.
 
 1. Clona el repositorio:
    ```sh
-   git clone https://github.com/jualas/Tarea_04.git
+   git clone https://github.com/3850437/Tarea_04.git
