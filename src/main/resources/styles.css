@@ -1,0 +1,56 @@
+
+.root {
+    /* Establece la fuente y el color de fondo de la aplicación */
+    -fx-font-family: 'Arial';
+    -fx-background-color: #f0f0f0;
+}
+
+.button {
+    /* Establece el color de fondo, el radio de las esquinas y el color del texto de los botones */
+    -fx-background-color: #4CAF50;
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+}
+.button:hover {
+    /* Cambia el color de fondo del botón cuando el ratón está sobre él */
+    -fx-background-color: #27492c;
+}
+
+.label {
+    /* Establece el tamaño de la fuente, el peso de la fuente y el color del texto de las etiquetas */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+.text-field {
+    /* Establece el color de fondo, el color del borde, el radio del borde y el relleno de los campos de texto */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-padding: 5 5 5 10;
+}
+
+.table-view {
+    /* Establece el color de fondo y el color del borde de las tablas */
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #dddddd;
+}
+
+.table-view .column-header-background {
+    /* Establece el color de fondo de los encabezados de las columnas de las tablas */
+    -fx-background-color: #e0e0e0;
+}
+
+.table-view .table-row-cell:odd {
+    /* Establece el color de fondo de las filas impares de las tablas */
+    -fx-background-color: #f2f2f2;
+}
+
+.text-area {
+    /* Establece el color de fondo, el color del borde, el radio del borde y el relleno de las áreas de texto */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}

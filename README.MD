@@ -20,6 +20,13 @@ películas, así como ver detalles de cada una.
 
 - Java 17 o superior
 - Maven 3.6.0 o superior
+- Dependencias de JavaFX:
+  - javafx-controls
+  - javafx-fxml
+- Dependencias de Jackson:
+  - jackson-annotations
+  - jackson-core
+  - jackson-databind
 
 ## Configuración del Proyecto
 

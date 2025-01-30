@@ -1,16 +1,10 @@
 package es.jualas.filmoteca;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
 
 public class EditController {
 
@@ -74,18 +68,62 @@ public class EditController {
 
     @FXML
     protected void onAcceptClick() {
+        // Verificar que todos los campos estén completos
+        if (titleTextField.getText().isEmpty() ||
+            yearTextField.getText().isEmpty() ||
+            descriptionTextArea.getText().isEmpty() ||
+            posterUrlTextField.getText().isEmpty()) {
+
+            // Mostrar una alerta de advertencia
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Campos incompletos");
+            alert.setHeaderText(null);
+            alert.setContentText("Que Pajaro eres, como buscas romper la aplicacion.\nAnda completa todos los campos antes de guardar.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validar el año
+        int year;
+        try {
+            year = Integer.parseInt(yearTextField.getText());
+            int currentYear = java.time.Year.now().getValue();
+            if (year < 1900 || year > currentYear) {
+                throw new NumberFormatException("Año fuera de rango");
+            }
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Año inválido");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, introduce un año válido entre 1900 y " + java.time.Year.now().getValue() + ".");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validar la URL del póster
+        try {
+            new java.net.URL(posterUrlTextField.getText());
+        } catch (java.net.MalformedURLException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("URL inválida");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, introduce una URL válida para el póster.");
+            alert.showAndWait();
+            return;
+        }
+
         // Mostrar una alerta de confirmación
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmación de cambios");
         alert.setHeaderText(null);
-        alert.setContentText("¿PIRATA!!!! estás seguro de los cambios realizados? A tiempo estas");
+        alert.setContentText("¿Estás seguro de los cambios realizados?");
 
         // Esperar la respuesta del usuario
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 // Actualizar los datos de la película
                 pelicula.setTitle(titleTextField.getText());
-                pelicula.setYear(Integer.parseInt(yearTextField.getText()));
+                pelicula.setYear(year);
                 pelicula.setDescription(descriptionTextArea.getText());
                 pelicula.setRating((float) ratingSlider.getValue());
                 pelicula.setPoster(posterUrlTextField.getText());
