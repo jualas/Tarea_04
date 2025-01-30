@@ -1,5 +1,6 @@
 package es.jualas.filmoteca;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,8 @@ public class MainController {
     private ImageView posterImageView;
     @FXML
     private TextField posterUrlTextField;
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private Label titleLabel;
@@ -35,6 +38,8 @@ public class MainController {
     private TextArea descriptionTextArea;
     @FXML
     private Label ratingLabel;
+
+    private FilteredList<Pelicula> filteredData;
 
     @FXML
     public void initialize() {
@@ -59,7 +64,8 @@ public class MainController {
 
         // Cargar datos en la tabla desde la lista de películas
         DatosFilmoteca.getInstancia();
-        peliculasTableView.setItems(DatosFilmoteca.getListaPeliculas());
+        filteredData = new FilteredList<>(DatosFilmoteca.getListaPeliculas(), p -> true);
+        peliculasTableView.setItems(filteredData);
 
         // Añadir listener para actualizar los campos cuando se seleccione una película
         peliculasTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -73,6 +79,16 @@ public class MainController {
                 posterUrlTextField.setText(newValue.getPoster());
             }
         });
+    }
+
+    @FXML
+    protected void onSearchKeyReleased() {
+        String filter = searchTextField.getText();
+        if (filter == null || filter.isEmpty()) {
+            filteredData.setPredicate(p -> true);
+        } else {
+            filteredData.setPredicate(p -> p.getTitle().toLowerCase().contains(filter.toLowerCase()));
+        }
     }
 
     @FXML

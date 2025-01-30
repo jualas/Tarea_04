@@ -42,11 +42,6 @@
     -fx-background-color: #e0e0e0;
 }
 
-.table-view .table-row-cell:odd {
-    /* Establece el color de fondo de las filas impares de las tablas */
-    -fx-background-color: #f2f2f2;
-}
-
 .text-area {
     /* Establece el color de fondo, el color del borde, el radio del borde y el relleno de las áreas de texto */
     -fx-background-color: #ffffff;
